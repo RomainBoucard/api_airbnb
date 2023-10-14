@@ -1,1 +1,2 @@
-npm install express sqlite3
+Romain BOUCARD 
+Maxime REY
