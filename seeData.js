@@ -121,7 +121,7 @@ const accommodations = [
     },
     price: 100,
     rating: 4.0,
-    favourite: true,
+    favourite: false,
   },
   {
     id: 13,

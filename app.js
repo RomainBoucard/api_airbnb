@@ -3,7 +3,7 @@ const app = express();
 const cors = require("cors");
 const sqlite3 = require("sqlite3").verbose();
 const port = 3000;
-const db = new sqlite3.Database('accommodations.db'); 
+const db = new sqlite3.Database("accommodations.db");
 
 app.use(cors());
 
@@ -27,6 +27,25 @@ app.get("/api/accomodations", (req, res) => {
           favourite: !!row.favourite,
         }));
         res.json(accommodations);
+      }
+    }
+  );
+});
+
+app.put("/api/accomodations/:id", (req, res) => {
+  const id = req.params.id;
+  // données de la requête
+  const newData = req.body;
+
+  // Mise à jour de la base de données
+  db.run(
+    "UPDATE accommodations SET favourite = ? WHERE id = ?",
+    [newData.favourite, id],
+    (err) => {
+      if (err) {
+        res.status(500).json({ error: "Erreur lors de la mise à jour" });
+      } else {
+        res.json({ message: "Mise à jour réussie" });
       }
     }
   );
